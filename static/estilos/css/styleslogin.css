@@ -1,0 +1,111 @@
+html {
+  font-family:'Asap', Tahoma, Geneva, Verdana, sans-serif ;
+  }
+
+
+body {font-family:'Asap', Tahoma, Geneva, Verdana, sans-serif ;}
+
+
+.fondo1{
+    background-image: url("/static/img/fondo.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #f8f3ff;
+}  
+
+.tipo_letra{
+  font-size: 14px ;
+  font-weight: 600;
+  color:#F85F6A;
+  font-family: 'Asap', Tahoma, Geneva, Verdana, sans-serif ;
+  line-height: 1;
+}
+.letra_grande{
+  font-size: 26px ;
+  font-weight: bold; 
+  color:#35424a;
+  font-family: 'Quicksand', Tahoma, Geneva, Verdana, sans-serif ;
+  line-height: 1;
+}
+.letra_pequeña{
+  font-size: 14px ;
+  color:#989eb1;
+  font-family: 'Asap', Tahoma, Geneva, Verdana, sans-serif ;
+  line-height: 1;
+}
+
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 0px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+input[type=text], input[type=confirm_password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 0px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+  }
+
+/* Boton de inicio de sesion*/
+button {
+  background-color: #F85F6A;
+  font-family:'Asap', Tahoma, Geneva, Verdana, sans-serif ;
+  font-size: 17px ;
+  transition: all ease 0.5s;
+  font-weight: 600;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border-radius: 8px;
+  border: 0px solid #ccc;
+  letter-spacing: 1px;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+/* centrar la imagen o logo*/
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+  position: relative;
+}
+
+.container {
+  padding: 16px;
+}
+
+span.password {
+  float: right;
+  padding-top: 16px;
+  font-size: 14px ;
+  color:#989eb1;
+  font-family: 'Asap', Tahoma, Geneva, Verdana, sans-serif ;
+  line-height: 1;
+}
+
+/* Caja del login */
+.modal-content {
+  background-color: #f8f3ff;
+  margin: 1% auto 1% auto; 
+  border: 0px solid #888;
+  border-radius: 20px;
+  width: center;
+  width: 30%; /* Tamaño central */
+}
+
+
+
+

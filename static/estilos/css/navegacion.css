@@ -1,0 +1,74 @@
+body {
+  font-family: 'Asap', Tahoma, Geneva, Verdana, sans-serif ;
+}
+
+.img1{
+  text-align: center;
+}
+
+.icon {
+  font-size:25px;
+  text-align: left;
+}
+
+.letra_grand1{
+  font-size: 18px ;
+  text-align: center;
+  font-weight: bold; 
+  color:black;
+  font-family: 'Quicksand', Tahoma, Geneva, Verdana, sans-serif ;
+}
+.letra_median1{
+  font-size: 14px ;
+  text-align: center;
+  font-weight:normal;
+  color:#b3b3ba;
+  font-family: 'Asap', Tahoma, Geneva, Verdana, sans-serif ;
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(255, 255, 255);
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+/* Modificar parte de la letra en el nav */
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 16px;
+  color: #424242;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f85f6a;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 5px;
+}
+  .sidenav img{
+      width: 150px;
+      height: 150px;
+  }
+  .sidenav p{
+    font-family: 'Asap', Tahoma, Geneva, Verdana, sans-serif ;
+  }
+  
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }

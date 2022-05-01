@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Inicio Puebla</title>
+    <link rel="stylesheet" href="static/estilos/css/principal.css" />
+    <link rel="stylesheet" href="static/estilos/css/navegacion.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <p class="img1"><img src="static/img/person.png"></p>
+    <p class="letra_grand1">Patricio Capa</p>
+    <p class="letra_median1">patricio@iberopuebla.mx</p>
+    <br>
+    <span><a href="#">Inicio</a></span>
+    <a href="#">Calendario</a>
+    <a href="#">Cursos</a>
+    <a href="#">Tareas</a>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <a href="#">Configuración</a>
+    <a href="#">Salir</a>
+</div>
+
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+<script>
+    function openNav() {
+    document.getElementById("mySidenav").style.width = "225px";
+    }
+
+    function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    }
+</script>
+ 
+{% block content %}
+<div>
+<body background="static/img/Blueraspberry.jpg">
+    <h2><center>App Mi Tarea</center></h2>
+    <br>
+    <main>
+      <form method="post">
+      <div class="card add">
+        <div class="cb-container">
+          <button><img src="static/img/mas.png"></button>
+        </div>
+        <div class="txt-container">
+          <input type="text" class="txt-input" name="name" placeholder="Nombre de la tarea" id="name" />
+        </div>
+      </div>
+    </form>
+    </main>
+
+    <main>
+      <h5>Tareas  {{response.counter2}}</h5>
+        {% for task in response.incompleted %}
+     
+      
+    </main>
+
+    <main>
+        
+        <div class="card text-white my-color mb-3">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-2">
+                        <!-- <input type="checkbox" name="" id=""> -->
+                        <a href="update/{{task['id']}}">
+                            <img src="static/img/circulo.png">
+                        </a>
+                    </div>
+                    <div class="col-8 text-start">
+                        <span class="card-title">{{task['name']}}</span>
+                    </div>
+                    <div class="col-2">
+                        <a href="delete/{{task['id']}}">
+                            <img src="static/img/eliminar.png">
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        {% endfor %}
+    </main>
+
+    <main class="mt-5">
+        <h5>Tareas completadas {{response.counter1}}</h5>
+        {% for task in response.completed %}
+        <div class="card text-white my-color mb-3">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-2">
+                        <!-- <input type="checkbox" name="" id=""> -->
+                        <a href="/">
+                            <img src="static/img/comprobar.png">
+                        </a>
+                    </div>
+                    <div class="col-10 text-start">
+                        <span class="card-title">{{task['name']}}</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        {% endfor %}
+    </main>
+
+</div>
+{% endblock %}
+</body>
+</html>
