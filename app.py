@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template, request, flash, url_for
+from flask import Flask, redirect, render_template, request, flash, url_for, session
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
@@ -13,34 +13,47 @@ app = Flask(__name__)
 #Configuraciones para firebase
 cred = credentials.Certificate("acount_key_api-user.json")
 fire = firebase_admin.initialize_app(cred)
-app.config["KEY"] = "6yqAI7BuPIloOGCVhGvXpCfDNkUJXe3nQYjDSrV4"
+app.config["SECRET_KEY"] = "6yqAI7BuPIloOGCVhGvXpCfDNkUJXe3nQYjDSrV4"
 #Conexion a firestore DB = DataBase
 db = firestore.client()
 #Se crea la referencia de la base de datos
 users_ref = db.collection("users")
 tasks_ref = db.collection("tasks")
 #Api web
-API_key = "AIzaSyCdtDzFbbJEfJx9A4YPZX9WgQmvJHrZewA"
+API_KEY = "AIzaSyCdtDzFbbJEfJx9A4YPZX9WgQmvJHrZewA"
 #Usuario para autentificarse por correo e email
 user_authentication = False
 #-------------------------------------------------------------------
 #-------------------------------------------------------------------#-------------------------------------------------------------------
 def login_firebas(email, password):
     credentials = {"email":email,"password":password,"returnSecureToken":True}
-    response = requests.post("https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key={}".format(API_key),data=credentials)
+    response = requests.post("https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key={}".format(API_KEY),data=credentials)
     if response.status_code == 200:
        #print(response.content)
-       content = response.content
-       data = response.json()
-       print(data["localId"])
+       #content = response.content
+       dataa = response.json()
+       user_login = (dataa["localId"])
+       print(user_login)
+       return user_login
        #print(data)
     elif response.status_code == 400:
         print(response.content)    
-   
-    return response.content
+    return False
+    #return response.content
     #print(response.status_code)
     #print(response.content)
 #-------------------------------------------------------------------#-------------------------------------------------------------------
+#Leer todos los usuarios
+def get_ref_user(id):
+    user_ref = users_ref.document(id)
+    user = user_ref.get()
+    if user.exists:
+        print(user.to_dict()) 
+        docs_ref = user_ref.collection("tasks")
+    else:
+        print("Usuario no existe")    
+        docs_ref = False
+    return docs_ref
 #-------------------------------------------------------------------
 #Leer una varias tasks
 def leer_tasks(ref):
@@ -71,26 +84,57 @@ def eliminar_task(ref, id):
 #-------------------------------------------------------------------#-------------------------------------------------------------------
 @app.route("/login", methods = ["GET", "POST"])
 def login():
-    global user_authentication
-    if request.method == "GET":
-       return render_template("login.html")
-    else: 
-    #POST
+   if request.method == "GET":
+      if "user_login" in session:
+         return redirect(url_for("home"))
+      else:
+         return render_template("login.html")
+
+   elif request.method == "POST": #POST
+      #Global
+      global user_authentication
+
       email = request.form["email"]
       password = request.form["password"]
       print(f"{email}:{password}")
       try:
-         if email == "manuel123@correo.com" and password == "admin1":
-            print("Ingresaste correctamente! ")
-            user_authentication = True
-            return redirect("/")
+         user_login = login_firebas(email, password)
+         print(f"Ingreso del usuario: {user_login}")
+         user_authentication = get_ref_user(user_login)
+         if user_login:
+            session["user_login"] = user_login
+            flash("Ingresaste correctamente!")
+            return redirect(url_for("home"))
          else:
             print("Sesion fallida..")
-            flash("Credenciales incorrectas ")
-      except:
-            print("Sesion fallida")
             flash("Credenciales incorrectas")
-            return redirect ("/")  
+            return redirect(url_for("login"))
+      except:          
+          print("Sesion fallida")
+          flash("Credenciales incorrectas")
+          return redirect (url_for("login"))  
+
+
+
+   #if request.method == "GET":
+   #    return render_template("login.html")
+   # else: 
+   #POST
+   #   email = request.form["email"]
+   #   password = request.form["password"]
+   #   print(f"{email}:{password}")
+   #   try:
+   #      if email == "manuel123@correo.com" and password == "admin1":
+   #         print("Ingresaste correctamente! ")
+   #         user_authentication = True
+   #         return redirect("/")
+   #      else:
+   #         print("Sesion fallida..")
+   #         flash("Credenciales incorrectas ")
+   #   except:
+   #         print("Sesion fallida")
+   #         flash("Credenciales incorrectas")
+   #         return redirect ("/")  
 
 
 #-------------------------------------------------------------------#-------------------------------------------------------------------
