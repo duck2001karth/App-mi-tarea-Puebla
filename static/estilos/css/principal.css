@@ -6,17 +6,18 @@
   --clr-primary: hsl(0, 0%, 98%);
   --clr-white: hsl(0, 0%, 100%);
   --clr-page-bg: hsl(235, 21%, 11%);
-  --clr-card-bg: hsl(235, 24%, 19%);
+  --clr-card-bg: #cfcfcf;
+  --clr-card1-bg: #cfcfcf;
   --clr-blue: hsl(220, 98%, 61%);
   --clr-green: hsl(192, 100%, 67%);
   --clr-pink: hsl(280, 87%, 65%);
-  --clr-gb-1: hsl(236, 33%, 92%);
+  --clr-gb-1: #989eb1;
   --clr-gb-2: hsl(234, 39%, 75%);
   --clr-gb-3: hsl(234, 11%, 52%);
   --clr-gb-4: hsl(237, 12%, 36%);
   --clr-gb-5: hsl(233, 14%, 35%);
   --clr-gb-6: hsl(235, 19%, 24%);
-  --clr-box-shadow: hsl(0, 0%, 0%, 0.1);
+  --clr-box-shadow: hsl(0, 0%, 0%, 0.1);;
 }
 
 html {
@@ -24,7 +25,13 @@ html {
   position: relative;
 }
 
+.text_central{
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  font-family: 'Asap', Tahoma, Geneva, Verdana, sans-serif ;
 
+}
 
 ul {
   list-style: none;
@@ -63,6 +70,14 @@ button:focus {
   outline: 0;
 }
 
+.fondo_index{
+  background-image: url("/static/img/fondo_index.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-color: #f8f3ff;
+}  
 
 
 /* ALL ARE CARDS  */
@@ -74,6 +89,20 @@ button:focus {
   align-items: center;
   padding: 1.9rem 2rem;
   gap: 2rem;
+  margin: 2rem 0 2.5rem 0;
+  border-radius: 14px;
+}
+
+.card1 {
+  background-color: var(--clr-card1-bg);
+  display: flex;
+  text-align: center;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.9rem 2rem;
+  gap: 2rem;
+  margin: 2rem 0 2.5rem 0;
+  border-radius: 14px;
 }
 
 /* HEADER'S CARD */
@@ -119,22 +148,6 @@ header.card h1 {
   border-radius: inherit;
 }
 
-/* CHECKED CARD */
-
-.card .cb-container .cb-input:checked + .check {
-  background: url("../assets/images/icon-check.svg"),
-    linear-gradient(45deg, var(--clr-green), var(--clr-pink));
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-/* ADD CARD */
-
-.add {
-  margin: 4rem 0 2.5rem 0;
-  border-radius: 0.5rem;
-}
-
 .add .cb-container {
   transition: background 0.3s ease;
 }
@@ -165,8 +178,10 @@ header.card h1 {
   flex: 1;
 }
 
+/* Texto en la parte de añadir tarea */
 .add .txt-container .txt-input {
   width: 100%;
+  border-radius: 8px;
   padding: 0.7rem 0;
   color: var(--clr-gb-1);
 }

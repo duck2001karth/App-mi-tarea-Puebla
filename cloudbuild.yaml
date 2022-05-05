@@ -1,0 +1,7 @@
+steps:
+  # build and push the container image
+ - name: "gcr.io/kaniko-project/executor:latest" 
+   args: ["--cache=true", "--cache-ttl=48h", "--destination=grc.io/$PROJECT_ID/To-do List app:latest"]
+  # Deploy container image to cloud run
+  name: "gcr.io/cloud-buildes/gcloud"
+  args: "beta", "run", "deploy", "To-do List app", "--image", "gcr.io/$PROJECT_ID/To-do List app:latest", "--region", "us-central1", "--allow-unauthenticated", "--platform", "managed"]

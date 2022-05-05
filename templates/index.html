@@ -25,7 +25,7 @@
     <br>
     <br>
     <a href="#">Configuración</a>
-    <a href="#">Salir</a>
+    <a href="login">Salir</a>
 </div>
 
 <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
@@ -41,8 +41,8 @@
  
 {% block content %}
 <div>
-<body background="static/img/Blueraspberry.jpg">
-    <h2><center>App Mi Tarea</center></h2>
+<body class="fondo_index">
+    <h2><center>ToDo List App Mi Tarea</center></h2>
     <br>
     <main>
       <form method="post">
@@ -58,7 +58,7 @@
     </main>
 
     <main>
-      <h5>Tareas  {{response.counter2}}</h5>
+      <p class="text_central">Actividades</p>
         {% for task in response.incompleted %}
      
       
@@ -66,16 +66,15 @@
 
     <main>
         
-        <div class="card text-white my-color mb-3">
-            <div class="card-body">
-                <div class="row">
+        <div>
+            <div>
+                <div class="card add">
                     <div class="col-2">
-                        <!-- <input type="checkbox" name="" id=""> -->
                         <a href="update/{{task['id']}}">
                             <img src="static/img/circulo.png">
                         </a>
                     </div>
-                    <div class="col-8 text-start">
+                    <div class="">
                         <span class="card-title">{{task['name']}}</span>
                     </div>
                     <div class="col-2">
@@ -90,20 +89,20 @@
         {% endfor %}
     </main>
 
-    <main class="mt-5">
-        <h5>Tareas completadas {{response.counter1}}</h5>
+    <main class="">
+        <p class="text_central">Actividades completadas </p>
         {% for task in response.completed %}
-        <div class="card text-white my-color mb-3">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-2">
+        <div class="">
+            <div class="">
+                <div class="card1">
+                    <div class="">
                         <!-- <input type="checkbox" name="" id=""> -->
                         <a href="/">
                             <img src="static/img/comprobar.png">
                         </a>
                     </div>
-                    <div class="col-10 text-start">
-                        <span class="card-title">{{task['name']}}</span>
+                    <div>
+                        <span>{{task['name']}}</span>
                     </div>
                 </div>
 
