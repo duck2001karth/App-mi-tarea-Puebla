@@ -139,9 +139,11 @@ def login():
 
 #-------------------------------------------------------------------#-------------------------------------------------------------------
 #Cierre de sesión
+@app.route("/logout", methods=["GET", "POST"])
 def login_left():
-    login(request)
-    return redirect(url_for("login"))
+   if "user_login" in session:
+      session.pop("user_login", None)
+   return redirect(url_for("login"))
 #-------------------------------------------------------------------#-------------------------------------------------------------------
 @app.route("/", methods = ["GET", "POST"])
 def home():
